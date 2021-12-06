@@ -1,39 +1,34 @@
 <template>
-    
-<div id="Home">
-      
-    <div class="container">
-    <img id=alce-icon src="/img/alce.png" alt="">
-
-        <h2> Nombres: <span>{{ userDetailById.name }}</span></h2>
-        <h2><span>{{ userDetailById.last_name }}</span></h2>
-        <h2>Ciudad: <span>{{ userDetailById.city }}</span></h2>
-        <h2> Libros intercambiados: <span>{{ xxx }}</span> </h2>
+   
+    <aside class="sidebar">
+            <img id=alce-icon src="/img/alce.png" alt="">
+        <br>  
+        <h3> Nombre:<span>{{xxx}}</span></h3>
+        <h3> Ciudad:<span>{{xxx}}</span> </h3>
+        <h3> Libros intercambiados: <span>{{xxx}}</span> </h3>
 
         <br>
             <button v-on:click="loadAccountSetUp">
-            <a href="#" class="aside-link">
               <span class="aside-text">Config. cuenta</span>
-            </a>
+            
             </button>
 
         <br>
             <button v-on:click="loadBook">
-            <a href="#" class="aside-link">
               <span class="aside-text">Añadir libro</span>
-            </a>
+            
             </button>
         
         <br>
             <button v-on:click="loadBookUpdate">
-            <a href="#" class="aside-link">
               <span class="aside-text">Config.libros</span>
-            </a>
             </button>
-        </div>
 
-        <h1>Mis libros para intercambio</h1>
+        </aside>
+
+    <div id="Home">
         <div class="container-table">
+        <h1>Mis libros para intercambio</h1>
             <table>
                 <tr>
                     <th></th>
@@ -44,7 +39,7 @@
                 </tr>
             
                 <tr v-for="book in bookByIdOwner" :key="book.id">
-                    <td> img id=book-icon src="/img/book.png" alt=""> </td>
+                    <td><img id=book-icon src="/img/book.png" alt=""></td>
                     <td>{{ book.tittle}}</td>
                     <td>{{ book.genre }}</td>
                     <td>{{ book.editorial }}</td>
@@ -59,23 +54,19 @@
 
 <script>
 import gql from "graphql-tag";
-import jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode"
 
 export default {
     name: "Home",
     
     data: function () {
         return{
-            userId: jwt_decode(localStorage.getItem("token_refresh")).user_id,
-            userDetailById: {
-                name: "",
-                last_name: "",
-                city: "",
-                idOwner: localStorage.getItem("idOwner") || "none",
-                booksByIdOwner: [],
-            },
-        };
-    },
+            idOwner: localStorage.getItem("idOwner") || "none",
+            booksByIdOwner:[],
+            
+            }
+        },
+    
     
     apollo: {
         booksByIdOwner: {
@@ -96,23 +87,7 @@ export default {
                 };
             },
         },
-
-        userDetailById: {
-            query: gql`
-                query ($userId: String!) {
-                    userDetailById(userId: $userId) {
-                        name
-                        last_name
-                        city
-                    }
-                }
-            `,
-            variables() {
-                return {
-                    userId: this.userId,
-                };
-            },
-        },
+        
     },
 
     methods: {
@@ -134,11 +109,19 @@ export default {
     }
 },
 }
+
 </script>
 
 <style>
 #alce-icon{
-    position: left;
+    position: middle;
+    top:250px;
+    height: 200px;
+    width: 200px;
+}
+
+#book-icon{
+    position: middle;
     top:250px;
     height: 200px;
     width: 200px;
@@ -146,28 +129,27 @@ export default {
 
 .sidebar{
     position: absolute;
-    top:175px;
     width: 20%;
-    height: 60%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     background:white;
+    padding: 30px;
+    
   
 }
 
 .sidebar button{
     color: transparent;
-    background: transparent;
-    border: 1px solid transparent;
-    height: 30%;
-    width: 15%;
-    border-radius: 5px;
-    padding: 10px 20px;
+    background: #61877A;
+    border-radius: 20px;
+    
 }
 
-.aside-link{
+.aside-text{
     vertical-align: middle;
-    font-size: 30px;
+    font-size: 20px;
+    color: white;
 }
 
 #Home {
@@ -177,10 +159,24 @@ export default {
     align-items: center;
     flex-direction: column;
 }
+#Home .h1 {
+    text-align: center;
+    color: #1a2537;
+    font-size: 50px;
+    font-family: Geliat-Light;
+}
 
 #Home .container-table{
-    width:50%;
-    max-height: 250px;
+    position: relative;
+    width: 70%;
+    height: 560px;
+    top:23px;
+    left:150px;
+    background: #ffffff;
+    justify-content: center;
+    padding: 3px;
+    border-radius: 20px;
+
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -209,20 +205,7 @@ export default {
     color: #283747;
     font-size: 25px;
 }
-#Home. container{
-    padding: 30px;
-    border: 3px solid rgba(0,0,0, 0.3);
-    border-radius: 20px;
-    margin: 5%0 1%0;
-}
-#Home .container h2{
-    font-size: 25px;
-    color: #283747;
-}
-#Home .container span{
-    color: #61877A;
-    font-weight: bold;
-}
+
  
 </style>
     
