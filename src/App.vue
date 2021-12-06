@@ -1,14 +1,15 @@
-<template>
+template>
 <div id="app" class="app">
   <div class="header">
   <h1>ALCE</h1>
   <nav>
     
     <button v-on:click="loadFaq"> FAQ </button>
-    <button v-on:click="loadLogIn" > LogIn </button>
-    <button v-on:click="loadSignUp" > SignUp </button>
     <button v-if="is_auth" v-on:click="loadHome"> Home </button>
+    <button v-if="is_auth" v-on:click="loadBook"> Añadir libro </button>
     <button v-if="is_auth" v-on:click="logOut"> LogOut </button>
+    <button v-if="!is_auth" v-on:click="loadLogIn" > LogIn </button>
+    <button v-if="!is_auth" v-on:click="loadSignUp" > SignUp </button>
 
   </nav>
    
@@ -19,7 +20,6 @@
         v-on:completedLogIn="completedLogIn"
         v-on:completedSignUp="completedSignUp"
         v-on:logOut="logOut"
-        v-on:loadHome="Home"
       >
       </router-view>
     </div>
@@ -57,9 +57,13 @@ methods:{
     loadFaq: function() {
       this.$router.push({ name: "faq" });
     },
-    
+
+    loadBook: function(){
+      this.$router.push({ name: "book" });
+    },
+
     completedLogIn: function(data) {
-      localStorage.setItem("username", data.username);
+      localStorage.setItem("email", data.email);
       localStorage.setItem("token_access", data.token_access);
       localStorage.setItem("token_refresh", data.token_refresh);
       alert("Autenticación Exitosa");
@@ -78,7 +82,8 @@ methods:{
     logOut: function () {
       localStorage.clear();
       alert("Sesión Cerrada");
-      this.verifyAuth();
+      this.loadLogIn();
+
     },
   }
 }
@@ -119,7 +124,7 @@ methods:{
   }
  .header nav{
     height: 100%;
-    width: 20%;
+    width: 30%;
     display: flex;
     justify-content: space-around;
     align-items: center;
