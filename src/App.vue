@@ -1,0 +1,159 @@
+<template>
+<div id="app" class="app">
+  <div class="header">
+  <h1>ALCE</h1>
+  <nav>
+    
+    <button v-on:click="loadFaq"> FAQ </button>
+    <button v-on:click="loadLogIn" > LogIn </button>
+    <button v-on:click="loadSignUp" > SignUp </button>
+    <button v-if="is_auth" v-on:click="loadHome"> Home </button>
+    <button v-if="is_auth" v-on:click="logOut"> LogOut </button>
+
+  </nav>
+   
+</div>
+
+    <div class="main-component">
+      <router-view
+        v-on:completedLogIn="completedLogIn"
+        v-on:completedSignUp="completedSignUp"
+        v-on:logOut="logOut"
+        v-on:loadHome="Home"
+      >
+      </router-view>
+    </div>
+
+    <div class="footer">
+      <h2>ALCE G4 P54 MinTIC 2021</h2>
+  </div>
+</div>
+</template>
+
+
+
+<script>
+export default {
+  name: 'App',
+
+  computed: {
+    is_auth: {
+    get: function() {
+      return this.$route.meta.requiresAuth;
+    },
+    set: function() { }
+  }
+},
+
+methods:{
+    loadLogIn: function(){
+      this.$router.push({name: "logIn"})
+    },
+
+    loadSignUp: function(){
+      this.$router.push({name: "signUp"})
+    },
+
+    loadFaq: function() {
+      this.$router.push({ name: "faq" });
+    },
+    
+    completedLogIn: function(data) {
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("token_access", data.token_access);
+      localStorage.setItem("token_refresh", data.token_refresh);
+      alert("Autenticación Exitosa");
+      this.loadHome();
+    },
+
+    completedSignUp: function(data) {
+      alert("Registro Exitoso");
+      this.completedLogIn(data);
+    },
+
+    loadHome: function() {
+      this.$router.push({ name: "home" });
+    },
+
+    logOut: function () {
+      localStorage.clear();
+      alert("Sesión Cerrada");
+      this.verifyAuth();
+    },
+  }
+}
+</script>
+
+<style scoped>
+
+  @font-face {
+    font-family: Geliat-Light;
+    src: url(/fonts/Geliat-ExtraLight.otf);
+}
+
+.body{
+    margin: 0;
+    padding: 0;
+    background: url(/img/library.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+  .header{
+    margin: 0%;
+    padding: 0;
+    width: 100%;
+    height: 10vh;
+    min-height: 10px;
+    background-color: #78373D ;
+    color:#E5E7E9 ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+ .header h1{
+    width: 20%;
+    text-align: center;
+  }
+ .header nav{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 20px;
+  }
+ .header nav button{
+    color: #E5E7E9;
+    background: #78373D;
+    border: 1px solid #E5E7E9;
+    border-radius: 6px;
+    padding: 10px 20px;
+  }
+ .header nav button:hover{
+    color: #283747;
+    background: #E5E7E9;
+    border: 1px solid #E5E7E9;
+  }
+
+
+.footer{
+    margin:0;
+    padding:0;
+    width: 100%;
+    height: 10vh;
+    min-height: 10px;
+    background-color: #78373D;
+    color: #E5E7E9;
+ }
+ .footer h2{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ 
+</style>

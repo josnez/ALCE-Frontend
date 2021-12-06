@@ -1,0 +1,124 @@
+@font-face {
+    font-family: Geliat-Light;
+    src: url(/fonts/Geliat-ExtraLight.otf);
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: url(/img/portal-transacional.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.fecha-hora{
+    position:relative;
+    font-family: Geliat-Light;
+    font-size:10px;
+    padding:10px;
+    color: black;
+}
+
+#icon-fecha{
+
+    position:relative;
+    top:-42px;
+    left:180px;
+}
+
+#bank-icon{
+    position: absolute;
+    top:253px;
+    left:258px;
+    height: 120px;
+    width: 120px;
+}
+
+#titulo{
+
+    position:absolute;
+    top:343px;
+    left:63px;
+    font-family: Geliat-Light;
+    font-size: 50px;
+    color: #16288b;
+}
+
+.formulario-login{
+
+    position: relative;
+    max-width: 470px;
+    height: 450px;
+    top:23px;
+    left:850px;
+    background: #fff;
+    text-align:center;
+    align-items: center;
+    padding: 0px;
+    border-radius: 20px;
+}
+
+
+input[type="text"],
+input[type="password"]{
+
+    width: 200px;
+    height:25px;
+    text-align: left;
+    justify-items: center;
+    align-items: center;
+    color: #1a2537;
+    font-size:15px;
+    font-family: Geliat-Light;
+    border: 1px solid #aaa;
+}
+
+
+.formulario-login h1{
+
+    text-align: center;
+    color: #1a2537;
+    padding:0px;
+    margin:0px;
+    font-size: 40px;
+    font-family: Geliat-Light;
+}
+
+.formulario-login h2{
+
+    text-align: center;
+    color: #1a2537;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    font-size: 25px;
+    font-family: Geliat-Light;
+}
+
+.button{
+    margin:30px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    width: 50%;
+    color: white;
+    font-size: 20px;
+    background: #1a2537;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display:block;
+
+}
+
+.formulario-login a{
+
+    text-align: center;
+    color: #1a2537;
+    font-size: 15px;
+    font-family: Geliat-Light;
+
+}
+
+
+

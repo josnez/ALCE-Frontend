@@ -1,0 +1,251 @@
+@font-face {
+    font-family: Geliat-Light;
+    src: url(Fonts/Geliat-ExtraLight.otf);
+}
+
+.fecha-hora{
+    position:relative;
+    font-family: Geliat-Light;
+    padding:0px;
+    color: black;
+    margin:10px
+}
+
+#fecha{
+    font-size: 20px;
+    margin:0px;
+}
+
+#icon-fecha{
+    position: absolute;
+    width: 30px;
+    height:30px;
+    top:0px;
+    left:184px;
+}
+
+.banner{
+    position:relative;
+    background: #a9d6e5;
+    height: 110px;
+}
+
+#bank-icon{
+    position: absolute;
+    top:2px;
+    left:16px;
+    height: 100px;
+    width: 100px;
+    padding:0px;
+}
+
+#titulo{
+    position:absolute;
+    top:25px;
+    left:140px;
+    font-family: Geliat-Light;
+    font-weight: bold;
+    font-size: 40px;
+
+}
+
+#parrafo{
+
+    position: absolute;
+    font-family: Geliat-Light;
+    font-size: 20px;
+    top: 67px;
+    left:140px;
+    margin:0px;
+
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    width: 15%;
+}
+
+.nav-link{
+    vertical-align: middle;
+
+}
+
+.material-icons{
+    vertical-align:middle;
+    font-size: 40px;
+
+}
+
+.Productos{
+    position: relative;
+    width:89%;
+    height: 257px;
+    left:199px;
+    top:-132px;
+    padding-top: 10px;
+}
+
+#Titulo-principal{
+
+    text-align: center;
+    margin-left: auto;
+    font-family: Geliat-Light;
+    font-weight: bold;
+    font-size:35px;
+    padding:0px;
+    margin:0px;
+}
+
+.Productos h1{
+
+    text-align: left;
+    margin-left: auto;
+    font-family: Geliat-Light;
+    font-weight: bold;
+    font-size:25px;
+    padding:0px;
+    margin:0px;
+}
+
+.nav{
+    font-family: Geliat-Light;
+    color: Black;
+}
+
+.formulario-login{
+
+    position: relative;
+    width: 89%;
+    height: 257px;
+    left: 199px;
+    top: -123px;
+    padding-top: 10px;
+    background: #fff;
+    justify-content: center;
+    padding: 3px;
+    align-content: center;
+    
+}
+
+.formulario-login h1{
+
+    text-align: center;
+    color: #1a2537;
+    font-size: 40px;
+    font-family: Geliat-Light;
+}
+
+.input-contenedor{
+
+    width: 300px;
+}
+
+.input-cuenta-origen{
+    width: 200px;
+    height:25px;
+    text-align: left;
+    
+}
+
+#txt-cuenta-destino{
+  
+    left:223px;
+    top:92px;
+    text-align: left;
+    color: #1a2537;
+    font-size: 15px;
+    font-family: Geliat-Light;   
+}
+
+.input-cuenta-destino{
+   
+    left:223px;
+    top:133px;
+    width: 200px;
+    height:25px;
+  
+}
+
+.input-valor{
+
+    width: 200px;
+    height:25px;
+    text-align: left;
+  
+}
+
+
+#txt-concepto{
+
+    left:223px;
+    top:160px;
+    text-align: left;
+    color: #1a2537;
+    font-size: 15px;
+    font-family: Geliat-Light;   
+}
+.input-concepto{
+    
+    top:202px;
+    left:223px;
+    width: 200px;
+    height:25px;
+   
+}
+
+.input-valcuenta{
+    width: 200px;
+    height:25px;
+   
+}
+
+.formulario-login h2{
+    text-align: left;
+    color: #1a2537;
+    font-size: 15px;
+    font-family: Geliat-Light;
+    
+}
+
+input[type="text"],
+input[type="password"]{
+
+    width: 200px;
+    height:25px;
+    text-align: left;
+    justify-items: center;
+    align-items: center;
+    color: #1a2537;
+    font-size:15px;
+    font-family: Geliat-Light;
+    border: 1px solid #aaa;
+}
+
+.icon{
+
+    min-width: 50px;
+    text-align: center;
+    color: #999;
+}
+
+.button{
+    margin:30px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    width: 50%;
+    color: white;
+    font-size: 20px;
+    background: #1a2537;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display:block;
+}
+
+.button:hover{
+
+    background: cadetblue;
+}

@@ -1,0 +1,193 @@
+@font-face {
+    font-family: Geliat-Light;
+    src: url(Fonts/Geliat-ExtraLight.otf);
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: url(portal-transacional.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.fecha-hora{
+    position:relative;
+    font-family: Geliat-Light;
+    font-size:10px;
+    padding:10px;
+    color: black;
+}
+
+.banner{
+    position:relative;
+    background: #a9d6e5;
+    height: 110px;
+}
+
+#bank-icon{
+    position: absolute;
+    top:2px;
+    left:16px;
+    height: 100px;
+    width: 100px;
+}
+
+#titulo{
+    position:absolute;
+    top:-8px;
+    left:140px;
+    font-family: Geliat-Light;
+    font-size: 40px;
+
+}
+
+#parrafo{
+
+    position: absolute;
+    font-family: Geliat-Light;
+    font-size: 20px;
+    top: 46px;
+    left:140px;
+
+}
+
+#icon-fecha{
+    position: absolute;
+    top:20px;
+    left:194px;
+}
+
+.formulario-login{
+
+    position: relative;
+    max-width: 470px;
+    height: 400px;
+    top:23px;
+    left:850px;
+    background: #ffffff;
+    justify-content: center;
+    padding: 3px;
+    border-radius: 20px;
+}
+
+.formulario-login h1{
+
+    text-align: center;
+    color: #1a2537;
+    font-size: 40px;
+    font-family: Geliat-Light;
+}
+
+.input-contenedor{
+
+    width: 100px;
+    padding:15px;
+
+}
+
+.input-username{
+    width: 200px;
+    height:25px;
+   
+}
+
+#txt-contrasena{
+    position:absolute;
+    left:223px;
+    top:92px;
+    text-align: left;
+    color: #1a2537;
+    font-size: 15px;
+    font-family: Geliat-Light;   
+}
+
+.input-contrasena{
+    position: absolute;
+    left:223px;
+    top:133px;
+    width: 200px;
+    height:25px;
+  
+}
+
+.input-nombres{
+
+    width: 200px;
+    height:25px;
+   
+}
+
+
+#txt-correo{
+    position:absolute;
+    left:223px;
+    top:160px;
+    text-align: left;
+    color: #1a2537;
+    font-size: 15px;
+    font-family: Geliat-Light;   
+}
+.input-correo{
+    position:absolute;
+    top:202px;
+    left:223px;
+    width: 200px;
+    height:25px;
+
+}
+
+.input-valcuenta{
+    width: 200px;
+    height:25px;
+}
+
+.formulario-login h2{
+    text-align: left;
+    color: #1a2537;
+    font-size: 15px;
+    font-family: Geliat-Light;
+    
+}
+
+input[type="text"],
+input[type="password"]{
+
+    width: 200px;
+    height:25px;
+    text-align: left;
+    justify-items: center;
+    align-items: center;
+    color: #1a2537;
+    font-size:15px;
+    font-family: Geliat-Light;
+    border: 1px solid #aaa;
+}
+
+.icon{
+
+    min-width: 50px;
+    text-align: center;
+    color: #999;
+}
+
+.button{
+    margin:30px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    width: 50%;
+    color: white;
+    font-size: 20px;
+    background: #1a2537;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display:block;
+}
+
+.button:hover{
+
+    background: cadetblue;
+}
