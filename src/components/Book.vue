@@ -5,49 +5,49 @@
 
     <!-- Formulario -->
 
-    <div  class= "books">
-        <div class="container_books">
+    <div id="Book" class= "book">
+        <div class="container_book">
             <h1>Añadir un libro</h1>
             <form v-on:submit.prevent="processBook">
         
         <h2>Título del libro:</h2>
             <div class= "input-title">
-                    <input type="text" v-model="book.tittle" placeholder="Título del libro">
+                    <input type="text" v-model="createBook.tittle" placeholder="Título del libro">
             </div>
 
         <h2>Autor:</h2>
             <div class= "input-author">
-                    <input type="text" v-model="book.author" placeholder="Autor del libro">
+                    <input type="text" v-model="createBook.author" placeholder="Autor del libro">
             </div>    
 
         <h2>Editorial:</h2>
             <div class= "input-editorial">
-                    <input type="text" v-model="book.editorial" placeholder="Editorial">
+                    <input type="text" v-model="createBook.editorial" placeholder="Editorial">
             </div>   
 
         <h2>Género:</h2>
             <div class= "input-genre">
-                    <input type="text" v-model="book.genre" placeholder="Genre">
+                    <input type="text" v-model="createBook.genre" placeholder="Genre">
             </div>
         
         <h2>Año:</h2>
             <div class= "input-year">
-                    <input type="text" v-model="book.year" placeholder="Año">
+                    <input type="text" v-model="createBook.year" placeholder="Año">
             </div>
 
         <h2>Estado físico:</h2>
             <div class= "input-physicalState">
-                    <input type="text" v-model="book.physicalState" placeholder="Estado físico">
+                    <input type="text" v-model="createBook.physicalState" placeholder="Estado físico">
             </div>  
 
         <h2>Edición:</h2>
             <div class= "input-edition">
-                    <input type="text" v-model="book.edition" placeholder="Edición">
+                    <input type="text" v-model="createBook.edition" placeholder="Edición">
             </div>  
 
         <h2>Idioma:</h2>
             <div class= "input-language">
-                    <input type="text" v-model="book.language" placeholder="Idioma">
+                    <input type="text" v-model="createBook.language" placeholder="Idioma">
             </div>
 
         <button type= "submit"> Añadir libro </button>           
@@ -59,15 +59,13 @@
 
 <script>
 import gql from "graphql-tag";
-import jwt_decode from "jwt-decode";
 
 export default {
     name: "Book",
     
     data: function(){
         return {
-            userId: jwt_decode(localStorage.getItem("token_refresh")).user_id,
-            book: {
+            createBook:{
                 tittle: "",
                 author: "",
                 editorial: "",
@@ -82,34 +80,66 @@ export default {
 
 methods: {
     processBook: async function() {
+        if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null ) {
+            this.$emit("logOut");
+            return;
+        }
+
+        localStorage.setItem("token_access", "");
+
         await this.$apollo
             .mutate({
                 mutation: gql`
-                    mutation($userInput: BookInput!) {
-                        Book(userInput: $userInput) {
-                            refresh
+                    mutation ($refresh: String!) {
+                        refreshToken(refresh: $refresh) {
                             access
                         }
                     }
                 `,
                 variables: {
-                    userInput: this.user,
+                    refresh: localStorage.getItem("token_refresh"),
                 },
             })
             .then((result) => {
-                let dataLogIn = {
-                    email: this.user.email,
-                    token_refresh: result.data.signUpUser.refresh,
-                };
-        
-                this.$emit("completedSignUp", dataLogIn);
+                localStorage.setItem("token_access", result.data.refreshToken.access);
             })
             .catch((error) => {
-                alert("ERROR: Fallo en el registro.");
+                this.$emit("logOut");
+                return;
+            });
+        
+        await this.$apollo
+            .mutate({
+                mutation: gql`
+                    mutation($book: BookInput!) {
+                        createBook(book: $book) {
+                            id
+                            tittle
+                            author
+                            editorial
+                            genre
+                            year
+                            physicalState
+                            edition
+                            language
+                        }
+                    }
+                `,
+                variables: {
+                    book: this.createBook,
+                },
+            })
+            .then((result) => {
+                alert("Libro creado con éxito");
+            })
+            .catch((error) => {
+                alert("Error al crear el libro");
             });
         },
     },
-}
+};
+
+
 </script>
 
 
@@ -126,10 +156,10 @@ body{
 
 .sidebar{
     position: absolute;
-    top:255px;
-
+    top:250px;
     display: flex;
     flex-direction: column;
+    background: transparent;
     
 }
 #alce-icon{
@@ -140,7 +170,7 @@ body{
 }
 
 
-.books {
+.book {
 
     position: relative;
     width: 70%;
@@ -152,7 +182,7 @@ body{
     padding: 3px;
     border-radius: 20px;
 }
-.books form {
+.book form {
 
     position: relative;
     max-width: 95%;
@@ -164,7 +194,7 @@ body{
    
 }
 
-.books h1{
+.book h1{
 
     text-align: center;
     color: #1a2537;
@@ -172,7 +202,7 @@ body{
     font-family: Geliat-Light;
 }
 
-.books form h2{
+.book form h2{
     text-align: left;
     color: #1a2537;
     font-size: 15px;
@@ -181,7 +211,7 @@ body{
 }
 
 
-.books button{
+.book button{
     border: none;
     color: white;
     font-size: 20px;
