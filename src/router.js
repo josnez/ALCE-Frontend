@@ -7,7 +7,7 @@ import LogIn from './components/LogIn.vue'
 import SignUp from './components/SignUp.vue'
 import Home from './components/Home.vue'
 import Book from './components/Book.vue'
-import Exchange from './components/Exchange.vue'
+//import Exchange from './components/Exchange.vue'
 import Faq from './components/Faq.vue'
 
 
@@ -35,12 +35,12 @@ const routes = [{
     component: Book,
     meta:{requiresAuth:true}
   },
-  {
+  /* {
     path: '/user/exchange',
     name: "exchange",
     component: Exchange,
     meta:{requiresAuth:true}
-  },
+  }, */
   {
     path: '/user/faq',
     name: "faq",

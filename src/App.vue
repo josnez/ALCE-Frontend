@@ -1,4 +1,4 @@
-template>
+<template>
 <div id="app" class="app">
   <div class="header">
   <h1>ALCE</h1>
