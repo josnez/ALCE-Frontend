@@ -7,6 +7,7 @@ import LogIn from './components/LogIn.vue'
 import SignUp from './components/SignUp.vue'
 import Home from './components/Home.vue'
 import Book from './components/Book.vue'
+import BookList from './components/BookList.vue'
 //import Exchange from './components/Exchange.vue'
 import Faq from './components/Faq.vue'
 
@@ -33,6 +34,12 @@ const routes = [{
     path: '/user/book',
     name: "book",
     component: Book,
+    meta:{requiresAuth:true}
+  },
+                {
+    path: '/user/bookList',
+    name: "bookList",
+    component: BookList,
     meta:{requiresAuth:true}
   },
   /* {
