@@ -28,7 +28,7 @@
           <input type="password" v-model="user.password" placeholder="" />
         </div>
         <br />
-        <button class="button" type="submit">Iniciar Sesion</button>
+        <button type="submit">Iniciar Sesion</button>
 
         <a href="#" v-if="!is_auth" v-on:click="loadSignUp"
           >¿Aun no te has registrado? Registrate</a
@@ -183,7 +183,7 @@ input[type="password"] {
   font-family: Geliat-Light;
 }
 
-.button {
+.logIn_user button {
   margin: 20px;
   margin-left: auto;
   margin-right: auto;
