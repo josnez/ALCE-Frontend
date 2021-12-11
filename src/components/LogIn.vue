@@ -1,39 +1,41 @@
 <template>
-  <div class="tittle">
-    <h1>¡Bienvenid@ a ALCE!</h1>
-    <br />
-    <h3>"Alimenta tu cerebro"</h3>
-    <img id="color-icon" src="/img/Color.PNG" alt="" />
-  </div>
+  <div>
+    <div class="tittle">
+      <h1>¡Bienvenid@ a ALCE!</h1>
+      <br />
+      <h3>"Alimenta tu cerebro"</h3>
+      <img id="color-icon" src="/img/Color.PNG" alt="" />
+    </div>
 
-  <div class="logIn_user">
-    <img id="alce-icon" src="/img/alce.png" alt="" />
-    <div class="container_logIn_user">
-      <form v-on:submit.prevent="processLogInUser">
-        <h1>Iniciar sesión</h1>
-        <br />
-        <br />
-        <h2 id="email">Correo Electrónico</h2>
-        <div class="input-email">
-          <input
-            type="email"
-            v-model="user.email"
-            placeholder="Correo Electrónico"
-          />
-        </div>
-        <br />
+    <div class="logIn_user">
+      <img id="alce-icon" src="/img/alce.png" alt="" />
+      <div class="container_logIn_user">
+        <form v-on:submit.prevent="processLogInUser">
+          <h1>Iniciar sesión</h1>
+          <br />
+          <br />
+          <h2 id="email">Correo Electrónico</h2>
+          <div class="input-email">
+            <input
+              type="email"
+              v-model="user.email"
+              placeholder="Correo Electrónico"
+            />
+          </div>
+          <br />
 
-        <h2>Contraseña</h2>
-        <div class="input-password">
-          <input type="password" v-model="user.password" placeholder="" />
-        </div>
-        <br />
-        <button type="submit">Iniciar Sesion</button>
+          <h2>Contraseña</h2>
+          <div class="input-password">
+            <input type="password" v-model="user.password" placeholder="" />
+          </div>
+          <br />
+          <button type="submit">Iniciar Sesion</button>
 
-        <a href="#" v-if="!is_auth" v-on:click="loadSignUp"
-          >¿Aun no te has registrado? Registrate</a
-        >
-      </form>
+          <a href="#" v-if="!is_auth" v-on:click="loadSignUp"
+            >¿Aun no te has registrado? Registrate</a
+          >
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -62,7 +64,7 @@ export default {
       await this.$apollo
         .mutate({
           mutation: gql`
-            mutation ($credentials: CredentialsInput!) {
+            mutation LogIn($credentials: CredentialsInput!) {
               logIn(credentials: $credentials) {
                 refresh
                 access
@@ -83,6 +85,7 @@ export default {
           this.$emit("completedLogIn", dataLogIn);
         })
         .catch((error) => {
+          console.log(error);
           alert("ERROR 401: Credenciales Incorrectas.");
         });
     },

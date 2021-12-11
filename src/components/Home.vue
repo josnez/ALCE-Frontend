@@ -1,53 +1,55 @@
 <template>
-  <aside class="sidebar">
-    <img id="alce-icon" src="/img/alce.png" alt="" />
-    <br />
-    <h3>
-      Nombre:<span>{{ xxx }}</span>
-    </h3>
-    <h3>
-      Ciudad:<span>{{ xxx }}</span>
-    </h3>
-    <h3>
-      Libros intercambiados: <span>{{ xxx }}</span>
-    </h3>
+  <div>
+    <aside class="sidebar">
+      <img id="alce-icon" src="/img/alce.png" alt="" />
+      <br />
+      <h3>
+        Nombre:<span>{{ xxx }}</span>
+      </h3>
+      <h3>
+        Ciudad:<span>{{ xxx }}</span>
+      </h3>
+      <h3>
+        Libros intercambiados: <span>{{ xxx }}</span>
+      </h3>
 
-    <br />
-    <button v-on:click="loadAccountSetUp">
-      <span class="aside-text">Config. cuenta</span>
-    </button>
+      <br />
+      <button v-on:click="loadAccountSetUp">
+        <span class="aside-text">Config. cuenta</span>
+      </button>
 
-    <br />
-    <button v-on:click="loadBook">
-      <span class="aside-text">Añadir libro</span>
-    </button>
+      <br />
+      <button v-on:click="loadBook">
+        <span class="aside-text">Añadir libro</span>
+      </button>
 
-    <br />
-    <button v-on:click="loadBookUpdate">
-      <span class="aside-text">Config.libros</span>
-    </button>
-  </aside>
+      <br />
+      <button v-on:click="loadBookUpdate">
+        <span class="aside-text">Config.libros</span>
+      </button>
+    </aside>
 
-  <div id="Home">
-    <div class="container-table">
-      <h1>Mis libros para intercambio</h1>
-      <table>
-        <tr>
-          <th></th>
-          <th>Nombre</th>
-          <th>Género</th>
-          <th>Editorial</th>
-          <th>Autor</th>
-        </tr>
+    <div id="Home">
+      <div class="container-table">
+        <h1>Mis libros para intercambio</h1>
+        <table>
+          <tr>
+            <th></th>
+            <th>Nombre</th>
+            <th>Género</th>
+            <th>Editorial</th>
+            <th>Autor</th>
+          </tr>
 
-        <tr v-for="book in bookByIdOwner" :key="book.id">
-          <td><img id="book-icon" src="/img/book.png" alt="" /></td>
-          <td>{{ book.tittle }}</td>
-          <td>{{ book.genre }}</td>
-          <td>{{ book.editorial }}</td>
-          <td>{{ book.author }}</td>
-        </tr>
-      </table>
+          <tr v-for="book in bookByIdOwner" :key="book.id">
+            <td><img id="book-icon" src="/img/book.png" alt="" /></td>
+            <td>{{ book.tittle }}</td>
+            <td>{{ book.genre }}</td>
+            <td>{{ book.editorial }}</td>
+            <td>{{ book.author }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
