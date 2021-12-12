@@ -4,13 +4,13 @@
       <img id="alce-icon" src="/img/alce.png" alt="" />
       <br />
       <h3>
-        Nombre:<span>{{ xxx }}</span>
+        Nombre: <span>{{ userDetailById.name + " " + userDetailById.last_name }}</span>
       </h3>
       <h3>
-        Ciudad:<span>{{ xxx }}</span>
+        Ciudad: <span>{{ userDetailById.city }}</span>
       </h3>
       <h3>
-        Libros intercambiados: <span>{{ xxx }}</span>
+        Libros intercambiados: <span>{{ userDetailById.num_changed_books }}</span>
       </h3>
 
       <br />
@@ -63,7 +63,19 @@ export default {
 
   data: function () {
     return {
-      idOwner: localStorage.getItem("idOwner") || "none",
+      idOwner: jwt_decode(localStorage.getItem("token_refresh")).user_id,
+      userDetailById: {
+        id : 0,
+        name : "",
+        last_ : "",name : "",
+        email : "",
+        depa : "",rtment : "",
+        city : "",
+        address : "",
+        adrress_com : "",plement : "",
+        postal_code : "",
+        num_changed_books : 0
+      },
       booksByIdOwner: [],
     };
   },
@@ -83,7 +95,31 @@ export default {
       `,
       variables() {
         return {
-          idOwner: this.idOwner,
+          userId: this.idOwner,
+        };
+      },
+    },
+
+    userDetailById: {
+      query: gql`
+        query UserDetailById($userId: Int!) {
+          userDetailById(userId: $userId) {
+            id
+            name
+            last_name
+            email
+            department
+            city
+            address
+            adrress_complement
+            postal_code
+            num_changed_books
+          }
+        }
+      `,
+      variables() {
+        return {
+          userId: this.idOwner,
         };
       },
     },
@@ -101,11 +137,11 @@ export default {
     loadAccountSetUp: function () {
       this.$router.push({ name: "accountSetUp" });
     },
+  },
 
-    created: function () {
-      this.$apollo.queries.booksByIdOwner.refetch();
-      this.$apollo.queries.userDetailById.refetch();
-    },
+  created: function () {
+    this.$apollo.queries.booksByIdOwner.refetch();
+    // this.$apollo.queries.userDetailById.refetch();
   },
 };
 </script>
