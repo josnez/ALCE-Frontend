@@ -4,13 +4,15 @@
       <img id="alce-icon" src="/img/alce.png" alt="" />
       <br />
       <h3>
-        Nombre: <span>{{ userDetailById.name + " " + userDetailById.last_name }}</span>
+        Nombre:
+        <span>{{ userDetailById.name + " " + userDetailById.last_name }}</span>
       </h3>
       <h3>
         Ciudad: <span>{{ userDetailById.city }}</span>
       </h3>
       <h3>
-        Libros intercambiados: <span>{{ userDetailById.num_changed_books }}</span>
+        Libros intercambiados:
+        <span>{{ userDetailById.num_changed_books }}</span>
       </h3>
 
       <br />
@@ -41,9 +43,9 @@
             <th>Autor</th>
           </tr>
 
-          <tr v-for="book in bookByIdOwner" :key="book.id">
+          <tr v-for="book in booksByIdOwner" :key="book.id">
             <td><img id="book-icon" src="/img/book.png" alt="" /></td>
-            <td>{{ book.tittle }}</td>
+            <td>{{ book.title }}</td>
             <td>{{ book.genre }}</td>
             <td>{{ book.editorial }}</td>
             <td>{{ book.author }}</td>
@@ -65,16 +67,19 @@ export default {
     return {
       idOwner: jwt_decode(localStorage.getItem("token_refresh")).user_id,
       userDetailById: {
-        id : 0,
-        name : "",
-        last_ : "",name : "",
-        email : "",
-        depa : "",rtment : "",
-        city : "",
-        address : "",
-        adrress_com : "",plement : "",
-        postal_code : "",
-        num_changed_books : 0
+        id: 0,
+        name: "",
+        last_: "",
+        name: "",
+        email: "",
+        depa: "",
+        rtment: "",
+        city: "",
+        address: "",
+        adrress_com: "",
+        plement: "",
+        postal_code: "",
+        num_changed_books: 0,
       },
       booksByIdOwner: [],
     };
@@ -83,13 +88,21 @@ export default {
   apollo: {
     booksByIdOwner: {
       query: gql`
-        query ($idOwner: String!) {
-          booksByIdOwner(idOwner: $idOwner) {
+        query UserBooks($userId: Int!) {
+          booksByIdOwner(userId: $userId) {
             id
-            tittle
+            title
             author
             editorial
             genre
+            year
+            physicalState
+            edition
+            state
+            language
+            idOwner
+            idAplicant
+            requested
           }
         }
       `,
@@ -140,7 +153,7 @@ export default {
   },
 
   created: function () {
-    this.$apollo.queries.booksByIdOwner.refetch();
+    // this.$apollo.queries.booksByIdOwner.refetch();
     // this.$apollo.queries.userDetailById.refetch();
   },
 };
