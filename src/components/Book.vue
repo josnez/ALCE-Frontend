@@ -14,7 +14,7 @@
           <div class="input-title">
             <input
               type="text"
-              v-model="createBook.tittle"
+              v-model="bookInput.title"
               placeholder="Título del libro"
             />
           </div>
@@ -23,7 +23,7 @@
           <div class="input-author">
             <input
               type="text"
-              v-model="createBook.author"
+              v-model="bookInput.author"
               placeholder="Autor del libro"
             />
           </div>
@@ -32,26 +32,26 @@
           <div class="input-editorial">
             <input
               type="text"
-              v-model="createBook.editorial"
+              v-model="bookInput.editorial"
               placeholder="Editorial"
             />
           </div>
 
           <h2>Género:</h2>
           <div class="input-genre">
-            <input type="text" v-model="createBook.genre" placeholder="Genre" />
+            <input type="text" v-model="bookInput.genre" placeholder="Genre" />
           </div>
 
           <h2>Año:</h2>
           <div class="input-year">
-            <input type="text" v-model="createBook.year" placeholder="Año" />
+            <input type="text" v-model="bookInput.year" placeholder="Año" />
           </div>
 
           <h2>Estado físico:</h2>
           <div class="input-physicalState">
             <input
               type="text"
-              v-model="createBook.physicalState"
+              v-model="bookInput.physicalState"
               placeholder="Estado físico"
             />
           </div>
@@ -60,7 +60,7 @@
           <div class="input-edition">
             <input
               type="text"
-              v-model="createBook.edition"
+              v-model="bookInput.edition"
               placeholder="Edición"
             />
           </div>
@@ -69,7 +69,7 @@
           <div class="input-language">
             <input
               type="text"
-              v-model="createBook.language"
+              v-model="bookInput.language"
               placeholder="Idioma"
             />
           </div>
@@ -83,14 +83,15 @@
 
 <script>
 import gql from "graphql-tag";
+import jwt_decode from "jwt-decode";
 
 export default {
   name: "Book",
 
   data: function () {
     return {
-      createBook: {
-        tittle: "",
+      bookInput: {
+        title: "",
         author: "",
         editorial: "",
         genre: "",
@@ -98,6 +99,7 @@ export default {
         physicalState: "",
         edition: "",
         language: "",
+        idOwner: -1,
       },
     };
   },
@@ -112,8 +114,7 @@ export default {
         return;
       }
 
-      localStorage.setItem("token_access", "");
-
+      /* localStorage.setItem("token_access", "");
       await this.$apollo
         .mutate({
           mutation: gql`
@@ -133,33 +134,39 @@ export default {
         .catch((error) => {
           this.$emit("logOut");
           return;
-        });
-
+        }); */
+      console.log(this.bookInput+ "");
+      this.bookInput.idOwner = jwt_decode(
+        localStorage.getItem("token_refresh")
+      ).user_id;
       await this.$apollo
         .mutate({
           mutation: gql`
-            mutation ($book: BookInput!) {
-              createBook(book: $book) {
+            mutation CreateBook($bookInput: InputBook!) {
+              createBook(bookInput: $bookInput) {
                 id
-                tittle
+                title
                 author
                 editorial
                 genre
                 year
                 physicalState
                 edition
+                state
                 language
+                idOwner
               }
             }
           `,
           variables: {
-            book: this.createBook,
+            bookInput: this.bookInput,
           },
         })
         .then((result) => {
           alert("Libro creado con éxito");
         })
         .catch((error) => {
+          console.log(error);
           alert("Error al crear el libro");
         });
     },

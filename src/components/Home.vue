@@ -153,7 +153,7 @@ export default {
   },
 
   created: function () {
-    // this.$apollo.queries.booksByIdOwner.refetch();
+    this.$apollo.queries.booksByIdOwner.refetch();
     // this.$apollo.queries.userDetailById.refetch();
   },
 };
