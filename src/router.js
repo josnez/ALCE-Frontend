@@ -1,46 +1,56 @@
 import gql from "graphql-tag";
 import { createRouter, createWebHistory } from "vue-router";
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+} from "@apollo/client/core";
 
-
-import LogIn from './components/LogIn.vue'
-import SignUp from './components/SignUp.vue'
-import Home from './components/Home.vue'
-import Book from './components/Book.vue'
-import BookList from './components/BookList.vue'
+import LogIn from "./components/LogIn.vue";
+import SignUp from "./components/SignUp.vue";
+import Home from "./components/Home.vue";
+import Book from "./components/Book.vue";
+import BookList from "./components/BookList.vue";
 //import Exchange from './components/Exchange.vue'
-import Faq from './components/Faq.vue'
+import Faq from "./components/Faq.vue";
+import EditBook from "./components/EditBook.vue"
 
-
-const routes = [{
-    path: '/user/logIn',
+const routes = [
+  {
+    path: "/user/logIn",
     name: "logIn",
     component: LogIn,
-    meta:{requiresAuth:false}
+    meta: { requiresAuth: false },
   },
   {
-    path: '/user/signUp',
+    path: "/user/signUp",
     name: "signUp",
     component: SignUp,
-    meta:{requiresAuth:false}
+    meta: { requiresAuth: false },
   },
   {
-    path: '/user/home',
+    path: "/user/home",
     name: "home",
     component: Home,
-    meta:{requiresAuth:true}
+    meta: { requiresAuth: true },
   },
   {
-    path: '/user/book',
+    path: "/user/book",
     name: "book",
     component: Book,
-    meta:{requiresAuth:true}
+    meta: { requiresAuth: true },
   },
-                {
-    path: '/user/bookList',
+  {
+    path: "/user/bookList",
     name: "bookList",
     component: BookList,
-    meta:{requiresAuth:true}
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/user/editBook",
+    name: "editBook",
+    component: EditBook,
+    meta: { requiresAuth: true },
   },
   /* {
     path: '/user/exchange',
@@ -49,15 +59,15 @@ const routes = [{
     meta:{requiresAuth:true}
   }, */
   {
-    path: '/user/faq',
+    path: "/user/faq",
     name: "faq",
     component: Faq,
-    meta:{requiresAuth:false}
+    meta: { requiresAuth: false },
   },
 ];
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
 export default router;

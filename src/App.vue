@@ -3,13 +3,13 @@
     <div class="header">
       <h1>ALCE</h1>
       <nav>
-        <button v-if="!is_auth" v-on:click="loadFaq">FAQ</button>
         <button v-if="is_auth" v-on:click="loadHome">Home</button>
         <button v-if="is_auth" v-on:click="loadCatalog">Catalogo de libros</button>
         <button v-if="is_auth" v-on:click="loadBook">Añadir libro</button>
         <button v-if="is_auth" v-on:click="logOut">LogOut</button>
         <button v-if="!is_auth" v-on:click="loadLogIn">LogIn</button>
         <button v-if="!is_auth" v-on:click="loadSignUp">SignUp</button>
+        <button v-if="!is_auth" v-on:click="loadFaq">FAQ</button>
       </nav>
     </div>
 
@@ -17,6 +17,7 @@
       <router-view
         v-on:completedLogIn="completedLogIn"
         v-on:completedSignUp="completedSignUp"
+        v-on:selectedBook="selectedBook"
         v-on:logOut="logOut"
       >
       </router-view>
@@ -86,6 +87,15 @@ export default {
       alert("Sesión Cerrada");
       this.loadLogIn();
     },
+
+    loadEditBook: function () {
+      this.$router.push({ name: "editBook" });
+    },
+
+    selectedBook: function (idBook) {
+      localStorage.setItem("idBook", idBook);
+      this.loadEditBook();
+    }
   },
   created: function(){
     this.loadLogIn();

@@ -47,6 +47,7 @@
             <th>Género</th>
             <th>Editorial</th>
             <th>Autor</th>
+            <th>opciones</th>
           </tr>
 
           <tr v-for="book in booksByIdOwner" :key="book.id">
@@ -55,6 +56,11 @@
             <td>{{ book.genre }}</td>
             <td>{{ book.editorial }}</td>
             <td>{{ book.author }}</td>
+            <td>
+              <button class="btn_interest" v-on:click="loadEditBook(book.id)">
+                Editar
+              </button>
+            </td>
           </tr>
         </table>
       </div>
@@ -75,8 +81,7 @@ export default {
       userDetailById: {
         id: 0,
         name: "",
-        last_: "",
-        name: "",
+        last_name: "",
         email: "",
         depa: "",
         rtment: "",
@@ -156,6 +161,10 @@ export default {
     loadAccountSetUp: function () {
       this.$router.push({ name: "accountSetUp" });
     },
+
+    loadEditBook: function (idBook) {
+      this.$emit("selectedBook", idBook);
+    },
   },
 
   created: function () {
@@ -166,7 +175,6 @@ export default {
 </script>
 
 <style>
-
 .alce-icon {
   position: middle;
   top: 250px;
@@ -269,6 +277,5 @@ export default {
   color: #283747;
   font-size: 25px;
 }
-
 </style>
     

@@ -61,7 +61,6 @@ export default {
     },
 
     processLogInUser: async function () {
-      console.log('Procesando usuario');
       await this.$apollo
         .mutate({
           mutation: gql`
@@ -89,7 +88,6 @@ export default {
           console.log(error);
           alert("ERROR 401: Credenciales Incorrectas.");
         });
-      console.log('Procesando usuario edn');
 
     },
   },
