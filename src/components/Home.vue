@@ -165,56 +165,57 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
-.alce-icon {
-  position: middle;
-  top: 250px;
-  height: 200px;
-  width: 200px;
+#alce-icon{
+    position: top;
+    height: 200px;
+    width: 200px;
 }
 
-.book-icon {
-  position: middle;
-  top: 250px;
-  height: 200px;
-  width: 200px;
+#book-icon{
+    position: middle;
+    top:250px;
+    height: 100px;
+    width: 100px;
 }
 
-.sidebar {
-  position: absolute;
-  width: 25%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+.sidebar{
+    position: fixed;
+    width: 20%;
+    height: 70%;
+    top:75px;
+    display: flex;
+    flex-direction: column;
+    background:white;
+    padding: 30px;
+    
 }
 
 .infoUser {
   background: white;
   border-radius: 10px;
   margin: 10px;
-  padding: 20px;
+  padding: 10px;
   font-family: Geliat-Light;
   position: top;
 }
 
-.sidebar button {
+.sidebar button{
+  width:100%;
+  background: #61877A;
+  border-radius: 20px;
   border: 1px solid #e5e7e9;
-  border-radius: 6px;
   padding: 4px 8px;
-
-  color: transparent;
   background: #61877a;
-  border-radius: 10px;
-  margin-top: 10px;
 }
 
-.aside-text {
+.aside-text{
   vertical-align: middle;
   font-size: 20px;
   color: white;
 }
+
 
 #Home {
   width: 100%;
@@ -223,19 +224,19 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-.title {
+#Home > h1 {
   text-align: center;
   color: #1a2537;
   font-size: 50px;
   font-family: Geliat-Light;
 }
 
-.Home .container-table {
+#Home .container-table{
   position: relative;
   width: 70%;
   height: 560px;
-  top: 23px;
-  left: 150px;
+  top:23px;
+  left:150px;
   background: #ffffff;
   justify-content: center;
   padding: 3px;
@@ -244,30 +245,30 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-.Home table {
+#Home table{
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0,0,0, 0.3);
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.Home table tr:nth-child(even) {
-  background-color: #f2f2f2;
+#Home table tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
-.Home table tr:hover {
-  background-color: #ddd;
+#Home table tr:hover{
+ background-color: #ddd;
 }
-.Home table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #61877a;
-  color: white;
+#Home table th{
+ padding-top: 12px;
+ padding-bottom: 12px;
+ text-align: left;
+ background-color: #61877A;
+ color: white;
 }
-.Home > h2 {
-  color: #283747;
-  font-size: 25px;
+#Home > h2{
+ color: #283747;
+ font-size: 25px;
 }
 
 </style>
