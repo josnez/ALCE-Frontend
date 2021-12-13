@@ -1,39 +1,45 @@
 <template>
   <div>
     <aside class="sidebar">
-      <img id="alce-icon" src="/img/alce.png" alt="" />
-      <br />
-      <h3>
-        Nombre:
-        <span>{{ userDetailById.name + " " + userDetailById.last_name }}</span>
-      </h3>
-      <h3>
-        Ciudad: <span>{{ userDetailById.city }}</span>
-      </h3>
-      <h3>
-        Libros intercambiados:
-        <span>{{ userDetailById.num_changed_books }}</span>
-      </h3>
+      <div class="infoUser">
+        <img id="alce-icon" src="/img/alce.png" alt="" />
+        <br />
+        <h3>
+          Nombre:
+          <span>{{
+            userDetailById.name + " " + userDetailById.last_name
+          }}</span>
+        </h3>
+        <h3>
+          Ciudad: <span>{{ userDetailById.city }}</span>
+        </h3>
+        <h3>
+          Libros intercambiados:
+          <span>{{ userDetailById.num_changed_books }}</span>
+        </h3>
 
-      <br />
-      <button v-on:click="loadAccountSetUp">
-        <span class="aside-text">Config. cuenta</span>
-      </button>
+        <br />
+        <div class="buttons">
+          <button v-on:click="loadAccountSetUp">
+            <span class="aside-text">Config. cuenta</span>
+          </button>
 
-      <br />
-      <button v-on:click="loadBook">
-        <span class="aside-text">Añadir libro</span>
-      </button>
+          <br />
+          <button v-on:click="loadBook">
+            <span class="aside-text">Añadir libro</span>
+          </button>
 
-      <br />
-      <button v-on:click="loadBookUpdate">
-        <span class="aside-text">Config.libros</span>
-      </button>
+          <br />
+          <button v-on:click="loadBookUpdate">
+            <span class="aside-text">Config.libros</span>
+          </button>
+        </div>
+      </div>
     </aside>
 
     <div id="Home">
       <div class="container-table">
-        <h1>Mis libros para intercambio</h1>
+        <h1 class="title">Mis libros para intercambio</h1>
         <table>
           <tr>
             <th></th>
@@ -160,14 +166,15 @@ export default {
 </script>
 
 <style>
-#alce-icon {
+
+.alce-icon {
   position: middle;
   top: 250px;
   height: 200px;
   width: 200px;
 }
 
-#book-icon {
+.book-icon {
   position: middle;
   top: 250px;
   height: 200px;
@@ -176,18 +183,31 @@ export default {
 
 .sidebar {
   position: absolute;
-  width: 20%;
-  height: 70%;
+  width: 25%;
+  height: 50%;
   display: flex;
   flex-direction: column;
+  padding: 10px;
+}
+
+.infoUser {
   background: white;
-  padding: 30px;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  font-family: Geliat-Light;
+  position: top;
 }
 
 .sidebar button {
+  border: 1px solid #e5e7e9;
+  border-radius: 6px;
+  padding: 4px 8px;
+
   color: transparent;
   background: #61877a;
-  border-radius: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 .aside-text {
@@ -203,14 +223,14 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-#Home .h1 {
+.title {
   text-align: center;
   color: #1a2537;
   font-size: 50px;
   font-family: Geliat-Light;
 }
 
-#Home .container-table {
+.Home .container-table {
   position: relative;
   width: 70%;
   height: 560px;
@@ -224,7 +244,7 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-#Home table {
+.Home table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -232,22 +252,23 @@ export default {
   padding: 8px;
 }
 
-#Home table tr:nth-child(even) {
+.Home table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-#Home table tr:hover {
+.Home table tr:hover {
   background-color: #ddd;
 }
-#Home table th {
+.Home table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #61877a;
   color: white;
 }
-#Home > h2 {
+.Home > h2 {
   color: #283747;
   font-size: 25px;
 }
+
 </style>
     

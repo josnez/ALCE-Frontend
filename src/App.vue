@@ -3,7 +3,7 @@
     <div class="header">
       <h1>ALCE</h1>
       <nav>
-        <button v-on:click="loadFaq">FAQ</button>
+        <button v-if="!is_auth" v-on:click="loadFaq">FAQ</button>
         <button v-if="is_auth" v-on:click="loadHome">Home</button>
         <button v-if="is_auth" v-on:click="loadBook">Añadir libro</button>
         <button v-if="is_auth" v-on:click="logOut">LogOut</button>
@@ -141,7 +141,7 @@ export default {
 }
 
 .footer {
-  margin: 0;
+  margin: 50px;
   padding: 0;
   width: 100%;
   height: 10vh;

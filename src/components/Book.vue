@@ -193,8 +193,7 @@ body {
   flex-direction: column;
   background: transparent;
 }
-#alce-icon {
-  position: left;
+.alce-icon {
   top: 250px;
   height: 200px;
   width: 200px;
@@ -203,13 +202,14 @@ body {
 .book {
   position: relative;
   width: 70%;
-  height: 205%;
+  height: 450px;
   top: 23px;
   left: 200px;
   background: #ffffff;
   justify-content: center;
   padding: 3px;
   border-radius: 20px;
+  margin-bottom: 10px;
 }
 .book form {
   position: relative;
