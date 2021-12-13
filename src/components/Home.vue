@@ -226,7 +226,7 @@ export default {
 .title {
   text-align: center;
   color: #1a2537;
-  font-size: 50px;
+  font-size: 40px;
   font-family: Geliat-Light;
 }
 

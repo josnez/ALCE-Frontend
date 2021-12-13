@@ -5,6 +5,7 @@
       <nav>
         <button v-if="!is_auth" v-on:click="loadFaq">FAQ</button>
         <button v-if="is_auth" v-on:click="loadHome">Home</button>
+        <button v-if="is_auth" v-on:click="loadCatalog">Catalogo de libros</button>
         <button v-if="is_auth" v-on:click="loadBook">Añadir libro</button>
         <button v-if="is_auth" v-on:click="logOut">LogOut</button>
         <button v-if="!is_auth" v-on:click="loadLogIn">LogIn</button>
@@ -57,6 +58,10 @@ export default {
 
     loadBook: function () {
       this.$router.push({ name: "book" });
+    },
+
+    loadCatalog: function () {
+      this.$router.push({ name: "bookList" });
     },
 
     completedLogIn: function (data) {
@@ -121,7 +126,7 @@ export default {
 }
 .header nav {
   height: 100%;
-  width: 30%;
+  width: 40%;
   display: flex;
   justify-content: space-around;
   align-items: center;

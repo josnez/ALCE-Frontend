@@ -6,7 +6,7 @@
 
     <div id="bookList">
       <div class="container-table">
-        <h1>libros Disponibles</h1>
+        <h1>Libros Disponibles</h1>
         <table>
           <tr>
             <th>Imagen</th>
@@ -17,7 +17,7 @@
             <th>opciones</th>
           </tr>
 
-          <tr v-for="book in bookById" :key="book.id">
+          <tr v-for="book in allBooks" :key="book.id">
             <td><img id="book-icon" src="/img/book.png" alt="" /></td>
             <td>{{ book.tittle }}</td>
             <td>{{ book.genre }}</td>
@@ -44,26 +44,34 @@ export default {
   data: function () {
     return {
       id: localStorage.getItem("id") || "none",
-      booksById: [],
+      allBooks: [],
     };
   },
 
   apollo: {
-    booksById: {
+    allBooks: {
       query: gql`
-        query ($id: String!) {
-          booksById(id: $id) {
+        query AllBooks {
+          allBooks {
             id
-            tittle
+            title
             author
             editorial
             genre
+            year
+            physicalState
+            edition
+            state
+            language
+            idOwner
+            idAplicant
+            requested
           }
         }
       `,
       variables() {
         return {
-          id: this.id,
+          
         };
       },
     },
@@ -75,7 +83,7 @@ export default {
     },
 
     created: function () {
-      this.$apollo.queries.booksById.refetch();
+      this.$apollo.queries.allBooks.refetch();
     },
   },
 };
@@ -117,10 +125,10 @@ export default {
     align-items: center;
     flex-direction: column;
 } */
-.booklist h1 {
+.container-table h1 {
   text-align: center;
   color: #1a2537;
-  font-size: 50px;
+  font-size: 30px;
   font-family: Geliat-Light;
 }
 
