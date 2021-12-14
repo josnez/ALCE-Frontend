@@ -105,6 +105,9 @@ export default {
   },
 
   methods: {
+    loadHome: function () {
+      this.$router.push({ name: "home" });
+    },
     processBook: async function () {
       if (
         localStorage.getItem("token_access") === null ||
@@ -164,6 +167,8 @@ export default {
         })
         .then((result) => {
           alert("Libro creado con éxito");
+          this.loadHome();
+
         })
         .catch((error) => {
           console.log(error);

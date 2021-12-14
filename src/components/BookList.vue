@@ -19,7 +19,7 @@
 
           <tr v-for="book in allBooks" :key="book.id">
             <td><img id="book-icon" src="/img/book.png" alt="" /></td>
-            <td>{{ book.tittle }}</td>
+            <td>{{ book.title }}</td>
             <td>{{ book.genre }}</td>
             <td>{{ book.editorial }}</td>
             <td>{{ book.author }}</td>

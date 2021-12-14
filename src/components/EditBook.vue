@@ -135,23 +135,11 @@ export default {
             bookInput: infoBook,
           },
         })
-        .then((result) => {
-          const bookIn = {
-            id: "61b692dd68ba811e534151b0",
-            title: "Will Edit",
-            author: "Will Smith",
-            editorial: "Penguin Press",
-            genre: "Health",
-            year: "2021",
-            physicalState: "new",
-            edition: "97",
-            language: "English",
-            idOwner: 1,
-          };
+        .then((result) => {          
           alert("Libro actualizado con éxito");
+          this.loadHome();
         })
         .catch((error) => {
-          const bookIn1 = this.infoBook;
           console.log(error);
           alert("Error al actualizar el libro");
         });
@@ -221,11 +209,16 @@ export default {
         })
         .then((result) => {
           alert("Libro eliminado");
+          this.loadHome();
         })
         .catch((error) => {
           console.log(error);
           alert("Error al eliminar el libro");
         });
+    },
+
+    loadHome: function () {
+      this.$router.push({ name: "home" });
     },
   },
 
